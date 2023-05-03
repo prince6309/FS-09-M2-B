@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] A=new int[n];
+        for(int i=0;i<n;i++){
+            A[i]=sc.nextInt();
+        }
+        int m=sc.nextInt();
+        int[] B=new int[m];
+        for(int j=0;j<m;j++){
+            B[j]=sc.nextInt();
+        }
+         int [] ans = new int[n+m];
+        int i = 0, j = 0, k = 0;
+        
+        while(i < n && j < m){
+            if(A[i] < B[j]){
+                ans[k] = A[i];
+                i++;
+                k++;
+            }
+            else{
+                ans[k] = B[j];
+                j++;
+                k++;
+            }
+        }
+        while(i < n){
+            ans[k] = A[i];
+            i++;
+            k++;
+        }
+        while(j < m){
+            ans[k] = B[j];
+            j++;
+            k++;
+        }
+        
+        for(i = 0; i < n+m; i++){
+            System.out.print(ans[i]+ " ");
+        }
+    }
+}
