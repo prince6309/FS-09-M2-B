@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] plants = new int[n];
+        for (int i = 0; i < n; i++) {
+            plants[i] = sc.nextInt();
+        }
+        int capacityA = sc.nextInt(); 
+        int capacityB = sc.nextInt();
+        int numRefills = numRefills(plants, capacityA, capacityB);
+        System.out.println(numRefills);
+        
+    }
+    public static int numRefills(int[] p, int ca, int cb) {                
+    
+        int refill= 0,oca =  ca, ocb =  cb;
+        int i=0, j = p.length-1; 
+        
+        while(i<=j){
+        
+             if(i==j){
+                if(ca>=cb){
+                   if(p[i]>ca){
+                        refill++;
+                    }                         
+                }
+                 else{                                      
+                      if(p[j]>cb){
+                        refill++;                        
+                    }                     
+                 }
+                 
+                 break; 
+            }
+                       
+                           
+            
+            if(p[i]>ca){
+                refill++;
+                ca =  oca;
+            }            
+            if(p[j]>cb){
+                refill++;
+                cb=  ocb;
+            }
+            
+             
+            ca-=p[i] ;                                  
+            cb-=p[j]; 
+            
+        
+            i++;           
+            j--;                                                            
+        }
+        return refill;                
+    }
+}
